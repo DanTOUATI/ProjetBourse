@@ -276,27 +276,29 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     private void tblActionsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblActionsMouseClicked
         
-        int Message = 0;
-        String choix;
-        choix = tblActions.getValueAt(tblActions.getSelectedRow(),1).toString();
-        //JOptionPane.showMessageDialog(this, "coucou");
-        for(Trader trad :mesTraders )
+        int action;
+        double argent;
+    
+        action = Integer.parseInt(tblTraders.getValueAt(tblTraders.getSelectedRow(),0).toString());   
+        
+        for(Trader trad : mesTraders)
         {
-               for (Action act : trad.getMesActions())
-               {
-                   if(act.getValeurAction()> act.getPrixAchatAction())
-                   {
-                       System.out.println("Vous gagnez de l'argent sur cette action");
-                   }
-                   else
-                   {
-                       System.out.println("Vous perdez de l'argent sur cette action");
-                   }
-        
-               }
-               lblMessage.setText(Integer.parseInt(Message));
-               
-        
+            for(Action act:trad.getMesActions())
+            {
+                if(act.getValeurAction() < act.getPrixAchatAction())
+                {
+        argent = (act.getValeurAction()*act.getQuantiteAcheter()) - (act.getPrixAchatAction()*act.getQuantiteAcheter());
+                    lblMessage.setText ( " Vous perdez de l'argent sur cette action: " + argent);
+                }
+                else if(act.getValeurAction() > act.getPrixAchatAction())
+                {
+                    argent=(act.getValeurAction()*act.getPrixAchatAction()) - (act.getPrixAchatAction()*act.getQuantiteAcheter());
+                    lblMessage.setText ( " Vous gagnez de l'argent sur cette action: " + argent);
+                }
+            }
+        }
+
+{
         }
     }//GEN-LAST:event_tblActionsMouseClicked
 
