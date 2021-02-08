@@ -303,17 +303,31 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_tblActionsMouseClicked
 
     private void btnVendreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVendreMouseClicked
-        
-    if(lblMessage.getText().compareTo("")==0)
+        int nbFois = 0;
+        if(txtQuantiteVendue.getText().compareTo("")==0)
         {
-            JOptionPane.showMessageDialog(this,"Veuillez saisir une quantite");
+            JOptionPane.showMessageDialog(this, "Veuillez saisir une quantité");
         }
-        
+        else
+        {
+         int quantiteVendue = 0;
+         quantiteVendue = Integer.parseInt(txtQuantiteVendue.getText());
+
+          for(Trader tra : mesTraders)
+          {  
+             for(Action act : tra.getMesActions())
+               {
+                   String NomAction = tblActions.getValueAt(tblActions.getSelectedRow(), 2).toString();
+                    if(act.getNomAction()== NomAction) 
+                    {
+                        
+                    }
+               }
+          }
+        }
+    
     }//GEN-LAST:event_btnVendreMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
